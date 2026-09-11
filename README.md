@@ -1,4 +1,4 @@
-# oi-my-words — A Skill for Removing the AI Flavor from Chinese Articles
+# oi-my-words
 
 oi-my-words is a writing-guideline skill that brings Chinese articles written by AI back to natural human narration. It checks a user-provided draft layer by layer across five dimensions and rewrites it, removing the templated traces left by the model, while fully preserving the original content, structure, and intended meaning.
 
