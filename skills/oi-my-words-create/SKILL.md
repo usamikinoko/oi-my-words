@@ -9,16 +9,16 @@ description: |
   phrases. Plan the article's structure and section divisions before writing.
   The rules cover five layers: sentence and grammar, paragraph and article
   structure, Markdown syntax, narrative style and wording, content quality.
-  Trigger words: "写博客/写文章/写篇博客/撰写文章/写一篇技术文章/blog/post",
-  or when the user provides a topic/outline and asks to create a new article.
+  Invocation is explicit only: activate this skill only when the user names it,
+  for example "请基于 oi-my-words-create 规则为我编写一篇 Markdown 文档……".
+  Generic requests that do not name the skill — such as "写博客", "写篇文章",
+  or "撰写技术文章" — must not trigger it on their own.
   This skill only creates new articles; it does not strip the AI flavor from
   existing text. When the user asks to rewrite existing text, use oi-my-words
   instead.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   license: "MIT"
-  upstream: ""
-  adapted-for: deepseek-harness
 ---
 
 # oi-my-words-create — Chinese Markdown Blog Writing Guidelines
@@ -28,6 +28,17 @@ The overall style is rigorous and professional, as a technical writer's style sh
 The rules are organized into five layers:
 sentence and grammar, paragraph and article structure, Markdown syntax,
 narrative style and wording, content quality.
+
+## When to Act
+
+Activation is explicit only. Apply these guidelines only when the user names this
+skill in the request, for example "请基于 oi-my-words-create 规则为我编写一篇
+Markdown 文档" or "用 oi-my-words-create 写一篇……".
+
+A generic request that describes the goal without naming the skill — "写博客",
+"写篇文章", "撰写技术文章" — does not activate it. When the intent is clearly to
+write a new article but the skill is not named, ask whether to apply the
+oi-my-words-create guidelines first; do not apply them unprompted.
 
 ## Why the "AI Flavor" Appears
 

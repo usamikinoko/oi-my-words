@@ -1,0 +1,27 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors / IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node (npx skills / tooling)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python (docs/tools 下的脚本)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local env / secrets
+.env
+.env.*
+.workbuddy

@@ -10,15 +10,15 @@ description: |
   Classical-Chinese transitional phrases.
   The rules cover five layers: sentence and grammar, paragraph and article
   structure, Markdown syntax, narrative style and wording, content quality.
-  Trigger words: "去 AI 味/去AI化/AI味太重/改写/润色/更像人写的",
-  or when the user provides a Chinese article draft to be rewritten per these rules.
+  Invocation is explicit only: activate this skill only when the user names it,
+  for example "请遵循 oi-my-words 规则为我改写……" or "按 oi-my-words 规范润色……".
+  Generic requests that do not name the skill — such as "去 AI 味", "改写",
+  "润色", or "更像人写的" — must not trigger it on their own.
   This skill only rewrites existing text; it does not write new articles.
   When the user asks to create a new article, use oi-my-words-create instead.
 metadata:
-  version: "0.1.1"
+  version: "0.2.0"
   license: "MIT"
-  upstream: ""
-  adapted-for: deepseek-harness
 ---
 
 # oi-my-words — Chinese Markdown Blog Writing Guidelines
@@ -28,6 +28,17 @@ The overall style is rigorous and professional, as a technical writer's style sh
 The rules are organized into five layers:
 sentence and grammar, paragraph and article structure, Markdown syntax,
 narrative style and wording, content quality.
+
+## When to Act
+
+Activation is explicit only. Apply these guidelines only when the user names this
+skill in the request, for example "请遵循 oi-my-words 规则为我改写这段文字" or
+"按 oi-my-words 规范润色以下内容".
+
+A generic request that describes the goal without naming the skill — "去 AI 味",
+"改写", "润色", "更像人写的" — does not activate it. When the intent is clearly to
+strip the AI flavor but the skill is not named, ask whether to apply the
+oi-my-words guidelines first; do not apply them unprompted.
 
 ## Why the "AI Flavor" Appears
 
