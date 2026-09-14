@@ -10,7 +10,7 @@
 
 oi-my-words is a writing-guideline skill that strips the AI flavor from Chinese articles. Given a draft, it checks the prose across five layers — sentence and grammar, paragraph and structure, Markdown syntax, wording, content quality — and rewrites it to read like natural human writing, keeping the original content, structure, and meaning intact. It never re-plans the article; only the wording changes.
 
-The repository uses the standard Agent Skills bundle layout: `skills/oi-my-words/` holds the skill (`SKILL.md` in English, `SKILL_CN.md` in Chinese), and `skills/oi-my-words-create/` holds a companion skill that writes new articles from a topic or outline.
+The repository uses the standard Agent Skills bundle layout: `skills/oi-my-words/` holds the skill, and `skills/oi-my-words-create/` holds a companion skill that writes new articles from a topic or outline. Each bundle carries the normative `SKILL.md` — written in Chinese, since these rules govern Chinese prose — alongside `SKILL_EN.md`, an English reference translation kept for review and for readers who do not work in Chinese. Hosts load `SKILL.md`, so the English file is documentation only.
 
 ## Effect Showcase
 

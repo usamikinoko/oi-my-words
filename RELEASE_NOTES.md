@@ -1,3 +1,29 @@
+# v0.3.0 — Chinese as the Source of Truth
+
+This release moves the normative text of both skills into Chinese, and splits each bundle into two single-language files.
+
+**The normative text is now Chinese.** `SKILL.md` — the file hosts load — is written in Chinese in both `skills/oi-my-words/` and `skills/oi-my-words-create/`. These rules govern Chinese prose: light Classical-Chinese transitions, modal particles, punctuation conventions. Their rationale only survives in Chinese; restated in English, a single felt constraint degrades into a set of independently tunable parameters. Rule numbering (1–18 and 1–19), the five layers, and every rule's substance are unchanged.
+
+**`SKILL_CN.md` → `SKILL_EN.md`.** The former Chinese reference translation is now the normative `SKILL.md`, and the former English `SKILL.md` is now `SKILL_EN.md`, a non-normative reference translation. Its opening note states that `SKILL.md` governs, and that Rules 5 and 15 — plus Rule 6 in `oi-my-words-create` — are only fully equivalent in Chinese. Each file's body is now single-language; only the frontmatter `description` stays deliberately bilingual, pairing an English skeleton for the matcher with Chinese trigger sentences.
+
+**Frontmatter fix.** Both `description` fields were over the 1024-character limit in the Agent Skills specification — 1175 and 1150 characters. They are now 989 and 1005. `oi-my-words-create`'s description also wrote `"English (中文)"` with half-width parentheses, contradicting its own Rule 1; that now reads `"English（中文）"`.
+
+Install or update with `npx skills add usamikinoko/oi-my-words --global`, the bundled `install.ps1` (Windows) or `install.sh` (macOS / Linux), or a manual copy; see README.md.
+
+---
+
+本次发布把两个技能的规范正文改为中文，并把每个技能包拆成两份单一语言的文件。
+
+**规范正文改为中文。** `skills/oi-my-words/` 与 `skills/oi-my-words-create/` 中宿主加载的 `SKILL.md` 现用中文撰写。本规范约束的对象就是中文行文——浅文言过渡、语气助词、标点习惯——这些条文的理据只在中文里成立；改用英文表述，一条整体约束会退化成若干个可独立调节的参数。规则编号（1–18 与 1–19）、五个层面与每条规则的实质内容均未改动。
+
+**`SKILL_CN.md` → `SKILL_EN.md`。** 原中文参考译版升为规范性 `SKILL.md`，原英文 `SKILL.md` 改为非规范性的英文参考译版 `SKILL_EN.md`。它开头的声明写明：规范性以 `SKILL.md` 为准；第 5 条与第 15 条（`oi-my-words-create` 另含第 6 条）只在中文里语义完全等价。两份文件的正文各自只用一种语言，只有 frontmatter 的 `description` 保持刻意双语——英文骨架供匹配器使用，中文触发句供中文请求识别。
+
+**前端修正。** 两份技能的 `description` 原本就已超出 Agent Skills 规范规定的 1024 字符上限（1175 与 1150 字符），现压缩为 989 与 1005。`oi-my-words-create` 的 description 原先把 `"English (中文)"` 写成半角括号，与它自己的第 1 条规则相矛盾，已改为全角的 `"English（中文）"`。
+
+可通过 `npx skills add usamikinoko/oi-my-words --global`、仓库自带的 `install.ps1`（Windows）或 `install.sh`（macOS / Linux），或手动复制安装与更新，详见 README.md。
+
+---
+
 # v0.2.0 — Explicit Invocation
 
 This release changes how the two skills are activated and tidies up the packaging.

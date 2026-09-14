@@ -10,7 +10,7 @@
 
 oi-my-words 是一个写作规范型 Skill，用来去掉中文文章里的 AI 味。给定一篇草稿，它按五个层面逐层检查——句子与语法、段落与结构、Markdown 语法、措辞、内容质量——改写成自然的真人写法，同时保留原文的内容、结构与意思。它不重新规划文章，只动措辞。
 
-仓库采用标准 Agent Skills bundle 布局：`skills/oi-my-words/` 是技能本体（`SKILL.md` 英文版、`SKILL_CN.md` 中文版），`skills/oi-my-words-create/` 是配套技能，根据主题或提纲撰写新文章。
+仓库采用标准 Agent Skills bundle 布局：`skills/oi-my-words/` 是技能本体，`skills/oi-my-words-create/` 是配套技能，根据主题或提纲撰写新文章。每个技能包内，规范正文 `SKILL.md` 用中文撰写——它约束的对象就是中文行文——另附 `SKILL_EN.md` 英文参考译版，供审阅与不习惯中文的读者使用。宿主加载的是 `SKILL.md`，英文版仅作文档。
 
 ## 效果展示
 
