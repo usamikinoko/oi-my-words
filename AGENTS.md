@@ -19,7 +19,7 @@ This repository is a collection of Chinese writing-guideline skills. It contains
 ## Constraints
 
 - Do not add `@skills/...` skill-activation references at the repository root. These skills are triggered by the user naming them explicitly, not by always-on context.
-- Both skills must be activated only when the user names the skill; generic wording such as "去 AI 味", "改写", or "写篇文章" must not trigger them automatically.
+- Both skills must be activated only when the request names the skill, whether the request is written in Chinese or in English. Generic wording that does not name the skill must not trigger them automatically.
 - Do not rename the `SKILL.md` frontmatter fields (`name` / `description` / `metadata`); hosts rely on them for skill matching.
 - Do not tune the rules to pass an evaluation. Every number published in the docs must come from a real run, never from an estimate or a rounded guess.
 

@@ -10,9 +10,11 @@ description: |
   写作前先规划文章结构与章节划分。
   规范覆盖五个层面：
   句子与语法、段落与文章结构、Markdown 语法、叙述方式与措辞、内容质量。
-  仅限点名触发：只有当用户在请求中明确点名本技能时才启用，
-  例如"请基于 oi-my-words-create 规则为我编写一篇 Markdown 文档……"；
-  不点名技能的通用措辞（"写博客""写篇文章""撰写技术文章"）不得单独触发。
+  仅限点名触发：只有当请求中明确点名本技能（名称 oi-my-words-create）时才启用，
+  中英文请求均可触发——
+  中文如"请基于 oi-my-words-create 规则为我编写一篇 Markdown 文档……"，
+  英文如"Write a Markdown article following the oi-my-words-create guidelines."；
+  未点名技能的请求（如"写博客""写篇文章""撰写技术文章"）不得触发。
   仅负责新文章的创作，不承担已有文本的去 AI 化改写；
   用户要求改写已有文本时，应调用 oi-my-words。
 metadata:
@@ -30,10 +32,13 @@ metadata:
 ## 何时启用（When to act）
 
 仅限点名触发。
-只有当用户在请求中明确点名本技能时才应用本规范，
-例如"请基于 oi-my-words-create 规则为我编写一篇 Markdown 文档"。
+只有当请求中明确点名本技能（名称 oi-my-words-create）时才应用本规范，
+中英文请求均可触发：
+中文如"请基于 oi-my-words-create 规则为我编写一篇 Markdown 文档"，
+英文如"Write a Markdown article following the oi-my-words-create guidelines."。
 
-只描述目的而不点名技能的通用请求（"写博客""写篇文章""撰写技术文章"）不启用本技能。
+只描述目的而不点名技能的请求不启用本技能，中英文皆然
+（例如"写博客""写篇文章""撰写技术文章"）。
 当意图明显是从零撰写文章、但用户没有点名技能时，
 先询问是否按 oi-my-words-create 规范处理，不要自行套用。
 

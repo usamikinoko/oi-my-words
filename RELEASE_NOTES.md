@@ -2,7 +2,7 @@
 
 This release changes how the two skills are activated and tidies up the packaging.
 
-**Explicit invocation only.** Both skills now activate only when the user names the skill in the request. `oi-my-words` expects a phrase such as 请遵循 oi-my-words 规则为我改写……, and `oi-my-words-create` expects one such as 请基于 oi-my-words-create 规则为我编写一篇文章……. Generic wording — 去 AI 味, 改写, 润色, 写篇文章 — no longer triggers either skill on its own; when the intent is clear but the skill is unnamed, the model asks before applying the rules.
+**Explicit invocation only.** Both skills now activate only when the request names the skill, and triggering is language-independent: the request may be written in Chinese or in English, and the skill name is what counts. `oi-my-words` is triggered by a request such as "Rewrite this draft following the oi-my-words guidelines", and `oi-my-words-create` by one such as "Write a Markdown article following the oi-my-words-create guidelines". Generic wording — a bare request to remove the AI flavor, to rewrite, or to polish — no longer triggers either skill on its own; when the intent is clear but the skill is unnamed, the model asks before applying the rules.
 
 **Housekeeping.** Both skills are now versioned 0.2.0. The empty `upstream` field and the `adapted-for: deepseek-harness` field were removed from the frontmatter, and both READMEs now document the explicit-invocation behaviour. The repository also gains `AGENTS.md`, `CLAUDE.md`, `.gitignore`, and `install.sh` (the bash counterpart of `install.ps1`).
 
@@ -12,7 +12,7 @@ Install or update with `npx skills add usamikinoko/oi-my-words --global`, the bu
 
 本次发布调整了两个技能的启用方式，并整理了打包细节。
 
-**仅限点名触发。** 两个技能现在只在用户于请求中点名技能时启用。`oi-my-words` 需要类似"请遵循 oi-my-words 规则为我改写……"的说法，`oi-my-words-create` 需要类似"请基于 oi-my-words-create 规则为我编写一篇文章……"的说法。通用措辞（"去 AI 味""改写""润色""写篇文章"）不再单独触发任一技能；当意图明确但未点名时，模型会先询问是否套用规范，不自行套用。
+**仅限点名触发。** 两个技能现在只在请求中点名技能时启用，中英文请求均可触发——触发条件是请求里出现技能名，与请求所用语言无关。`oi-my-words` 由类似"请遵循 oi-my-words 规则为我改写……"的请求触发（写成英文如"Rewrite this draft following the oi-my-words guidelines"同样可以），`oi-my-words-create` 由类似"请基于 oi-my-words-create 规则为我编写一篇文章……"的请求触发。通用措辞（"去 AI 味""改写""润色""写篇文章"）不再单独触发任一技能；当意图明确但未点名时，模型会先询问是否套用规范，不自行套用。
 
 **整理项。** 两个技能的版本号统一为 0.2.0；frontmatter 中空的 `upstream` 字段与 `adapted-for: deepseek-harness` 字段已删除；两份 README 已同步更新为点名触发的用法。仓库新增 `AGENTS.md`、`CLAUDE.md`、`.gitignore` 与 `install.sh`（`install.ps1` 的 bash 对应版本）。
 

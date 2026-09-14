@@ -9,10 +9,12 @@ description: |
   phrases. Plan the article's structure and section divisions before writing.
   The rules cover five layers: sentence and grammar, paragraph and article
   structure, Markdown syntax, narrative style and wording, content quality.
-  Invocation is explicit only: activate this skill only when the user names it,
-  for example "请基于 oi-my-words-create 规则为我编写一篇 Markdown 文档……".
-  Generic requests that do not name the skill — such as "写博客", "写篇文章",
-  or "撰写技术文章" — must not trigger it on their own.
+  Invocation is explicit only: activate this skill only when the request names
+  it — the literal name oi-my-words-create — and the request may be written in
+  Chinese or in English. For example: "Write a Markdown article following the
+  oi-my-words-create guidelines." A request that describes the goal without
+  naming the skill (for instance, "write a blog post" or "write an article")
+  must not trigger it, in either language.
   This skill only creates new articles; it does not strip the AI flavor from
   existing text. When the user asks to rewrite existing text, use oi-my-words
   instead.
@@ -31,14 +33,16 @@ narrative style and wording, content quality.
 
 ## When to Act
 
-Activation is explicit only. Apply these guidelines only when the user names this
-skill in the request, for example "请基于 oi-my-words-create 规则为我编写一篇
-Markdown 文档" or "用 oi-my-words-create 写一篇……".
+Activation is explicit only: apply these guidelines only when the request names
+this skill — `oi-my-words-create` — and the request may be written in Chinese or
+in English. For example: "Write a Markdown article following the
+oi-my-words-create guidelines."
 
-A generic request that describes the goal without naming the skill — "写博客",
-"写篇文章", "撰写技术文章" — does not activate it. When the intent is clearly to
-write a new article but the skill is not named, ask whether to apply the
-oi-my-words-create guidelines first; do not apply them unprompted.
+A request that describes the goal without naming the skill does not activate it,
+whether it is written in Chinese or in English (for example, "write a blog post"
+or "write an article"). When the intent is clear but the skill is not named, ask
+whether to apply the oi-my-words-create guidelines first; do not apply them
+unprompted.
 
 ## Why the "AI Flavor" Appears
 

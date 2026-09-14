@@ -10,10 +10,12 @@ description: |
   Classical-Chinese transitional phrases.
   The rules cover five layers: sentence and grammar, paragraph and article
   structure, Markdown syntax, narrative style and wording, content quality.
-  Invocation is explicit only: activate this skill only when the user names it,
-  for example "请遵循 oi-my-words 规则为我改写……" or "按 oi-my-words 规范润色……".
-  Generic requests that do not name the skill — such as "去 AI 味", "改写",
-  "润色", or "更像人写的" — must not trigger it on their own.
+  Invocation is explicit only: activate this skill only when the request names
+  it — the literal name oi-my-words — and the request may be written in Chinese
+  or in English. For example: "Rewrite this draft following the oi-my-words
+  guidelines." A request that describes the goal without naming the skill (for
+  instance, asking to remove the AI flavor or to polish the text) must not
+  trigger it, in either language.
   This skill only rewrites existing text; it does not write new articles.
   When the user asks to create a new article, use oi-my-words-create instead.
 metadata:
@@ -31,14 +33,15 @@ narrative style and wording, content quality.
 
 ## When to Act
 
-Activation is explicit only. Apply these guidelines only when the user names this
-skill in the request, for example "请遵循 oi-my-words 规则为我改写这段文字" or
-"按 oi-my-words 规范润色以下内容".
+Activation is explicit only: apply these guidelines only when the request names
+this skill — `oi-my-words` — and the request may be written in Chinese or in
+English. For example: "Rewrite this passage following the oi-my-words guidelines."
 
-A generic request that describes the goal without naming the skill — "去 AI 味",
-"改写", "润色", "更像人写的" — does not activate it. When the intent is clearly to
-strip the AI flavor but the skill is not named, ask whether to apply the
-oi-my-words guidelines first; do not apply them unprompted.
+A request that describes the goal without naming the skill does not activate it,
+whether it is written in Chinese or in English (for example, asking to remove the
+AI flavor or to polish the text). When the intent is clear but the skill is not
+named, ask whether to apply the oi-my-words guidelines first; do not apply them
+unprompted.
 
 ## Why the "AI Flavor" Appears
 
