@@ -1,53 +1,70 @@
-# oi-my-words
+<h1 align="center">oi-my-words</h1>
 
-oi-my-words is a writing-guideline skill that brings Chinese articles written by AI back to natural human narration. It checks a user-provided draft layer by layer across five dimensions and rewrites it, removing the templated traces left by the model, while fully preserving the original content, structure, and intended meaning.
+<p align="center">
+  <a href="README.md">English</a> | <a href="README_CN.md">中文简体</a>
+</p>
 
-The repository follows the standard Agent Skills bundle layout. The skill itself lives in the `skills/oi-my-words/` directory, where `SKILL.md` is the English version and `SKILL_CN.md` is the Chinese one. The repository also ships a companion skill, oi-my-words-create, for writing brand-new articles rather than rewriting existing text; it lives in the `skills/oi-my-words-create/` directory.
+<p align="center">
+  <img src="https://sorrowful-paladin-images-1315415177.cos.ap-shanghai.myqcloud.com/260720260914115120258.png" alt="oi-my-words" width="100%">
+</p>
+
+oi-my-words is a writing-guideline skill that strips the AI flavor from Chinese articles. Given a draft, it checks the prose across five layers — sentence and grammar, paragraph and structure, Markdown syntax, wording, content quality — and rewrites it to read like natural human writing, keeping the original content, structure, and meaning intact. It never re-plans the article; only the wording changes.
+
+The repository uses the standard Agent Skills bundle layout: `skills/oi-my-words/` holds the skill (`SKILL.md` in English, `SKILL_CN.md` in Chinese), and `skills/oi-my-words-create/` holds a companion skill that writes new articles from a topic or outline.
+
+## Effect Showcase
+
+Tested across GPT-5.5, GLM-5.3-flash, DeepSeek-V4-Flash and other models over multiple rounds, oi-my-words consistently brings the AI-generated score down. One worked example — DeepSeek-V4-Flash on how HTTP caching works — is measured with the [Tencent Zhuque AI detector](https://matrix.tencent.com/ai-detect/):
+
+| Draft | Zhuque AI score |
+|---|---|
+| Raw model output | **99.8%** |
+| After oi-my-words | **59.1%** (4-segment weighted) |
+
+Full texts and per-segment numbers: [`examples/http-cache/`](examples/http-cache/).
 
 ## Installation
 
-oi-my-words uses the generic Agent Skills directory structure — one directory is one deployable skill package — so any host that supports Agent Skills recognizes it directly. The repository offers three installation methods, covering DeepSeek Harness and the common cross-agent setups; pick whichever fits.
+The layout is the generic Agent Skills structure — one directory, one deployable skill package — so any compatible host picks it up as is.
 
-Method one, manual copy. Clone the repository first:
+**1. Manual copy.** Clone the repository:
 
 ```bash
 git clone git@github.com:usamikinoko/oi-my-words.git
 ```
 
-Then copy the entire `skills/oi-my-words` directory into the skill root of your host. For DeepSeek Harness, the user skill root is `~/.dsh/skills`:
+Copy the whole `skills/oi-my-words` directory into your host's skill root — for DeepSeek Harness, `~/.dsh/skills`:
 
 ```bash
 cp -r oi-my-words/skills/oi-my-words ~/.dsh/skills/oi-my-words
 ```
 
-On Windows, PowerShell users can achieve the same copy with `Copy-Item`. After installation the host hot-reloads the new skill automatically, so a restart is usually unnecessary; if it is not picked up within the session, restart the session once.
+On Windows use `Copy-Item`. Hosts hot-reload skills, so a restart is rarely needed; restart the session once if it is not picked up.
 
-Method two, one-command install with the `install.ps1` script shipped at the repository root, aimed at DeepSeek Harness. Open PowerShell in the repository root and run `.\install.ps1`; the script deploys every skill bundle under `skills/` (oi-my-words and oi-my-words-create) into `~/.dsh/skills`. Pass `-Target` to point at a different skill root, or `-WhatIf` for a dry run that writes nothing. The script cleans up any same-named old directory before copying, so re-running it is safe.
+**2. One-command install (DeepSeek Harness).** From the repository root in PowerShell, run `.\install.ps1`. It deploys every bundle under `skills/` (oi-my-words and oi-my-words-create) into `~/.dsh/skills`; `-Target` picks a different root, `-WhatIf` runs a dry run. Old same-named directories are cleaned first, so re-running is safe.
 
-Method three, cross-agent install via npx skills, for users who run several coding agents such as Claude Code, Codex, or Cursor. The command below installs the skill into your user-level directory and makes it available to every project:
+**3. Cross-agent install.** For users running several coding agents (Claude Code, Codex, Cursor, …):
 
 ```bash
 npx skills add usamikinoko/oi-my-words --global
 ```
 
-Drop `--global` to install into the current project only; add `--agent <name>` to target a specific agent, or `--skill <name>` to install just one of the skills. This method is implemented by the skills CLI from vercel-labs, requires Node.js 22.20 or newer, and relies on the standard `skills/<name>/SKILL.md` layout of the repository. Note that it targets the coding-agent ecosystem (claude-code, codex, cursor, and so on); DeepSeek Harness is not on its supported list, so DSH users should use the first two methods.
+Drop `--global` for the current project only; `--agent <name>` targets one agent; `--skill <name>` installs a single skill. This is vercel-labs' skills CLI — Node.js 22.20 or newer, relying on the standard `skills/<name>/SKILL.md` layout. It covers the coding-agent ecosystem only; DeepSeek Harness is not supported, so DSH users should use method 1 or 2.
 
 ## Usage
 
-oi-my-words is invoked by naming it explicitly in the request. It has no fixed slash commands and, by design, is not triggered by generic wording on its own. **The request may be written in Chinese or in English** — what triggers the skill is the name oi-my-words appearing in the request, not the language it is written in. Paste the draft you want rewritten and name the skill in the same request, for example: Rewrite this draft following the oi-my-words guidelines. A request that merely describes the goal without naming the skill — asking to remove the AI flavor, to rewrite, or to polish the text — does not activate it; when the intent is clear, the model asks whether to apply the oi-my-words guidelines rather than applying them on its own. Note that this skill only rewrites existing text: it never touches headings or section structure, and never forces existing lists into paragraphs. If you need a brand-new article with planned sections, name the companion skill oi-my-words-create instead, for example: Write a Markdown article following the oi-my-words-create guidelines, on the topic of ….
+Name the skill in the request — that is the only trigger. There are no slash commands, and generic wording alone does nothing. **Chinese and English requests both work**; what counts is that `oi-my-words` appears. Paste your draft and name the skill, for example: Rewrite this draft following the oi-my-words guidelines. Asking only to "remove the AI flavor" or to "polish" the text will not activate it; when the intent is clear, the model asks first rather than applying the rules on its own.
+
+Two limits: the skill only rewrites existing text — it never touches headings or section structure, and never turns existing lists into paragraphs. For a new article with planned sections, name the companion skill instead: Write a Markdown article following the oi-my-words-create guidelines, on the topic of ….
 
 ## How It Works
 
-The idea behind oi-my-words starts from an observation: a language model generates text as the most likely next token, so by default it picks the wording that fits the broadest possible readership, whereas a human writer writes for a specific reader and a specific subject, making uneven, individual choices. The gap between the two concentrates in five layers, and the guidelines are organized along exactly those five: sentence and grammar, paragraph and article structure, Markdown syntax, narrative style and wording, and content quality.
+A language model writes "the most likely next token", so by default it picks wording that suits the widest possible readership; a human writes for one reader and one subject, and the choices come out uneven. That gap is the AI flavor. It shows up in five layers, and the guidelines are organized along exactly those five.
 
-The sentence-and-grammar layer constrains the most basic habits of expression: technical terms are annotated as the English term followed by its Chinese equivalent in parentheses, subject–predicate–object structures stay complete, and adverbials and punctuation are used with restraint. The paragraph-and-structure layer requires logic and forward-and-backward coherence in the narration and, when rewriting, keeps the user's original paragraph breaks and section structure untouched.
+The sentence-and-grammar layer keeps subjects and objects complete, annotates a technical term as the English term plus its Chinese equivalent in parentheses, and holds adverbials and punctuation back. The paragraph-and-structure layer asks for logic and forward-and-backward coherence, leaving the user's paragraph breaks and sections untouched. The Markdown layer discourages decorative lists in favour of paragraph prose, with blockquotes for supplementary notes. The wording layer wants varied sentences and connectives, no repeated meaning, and the occasional light Classical-Chinese transition. The content layer demands rigor, no fabricated data, and — for tutorials — approachable explanations.
 
-The Markdown-syntax layer restricts decorative lists and favors paragraph prose, with blockquotes for supplementary notes. The style-and-wording layer asks for varied sentence patterns and connectives, no repeated phrasing, and the occasional light Classical-Chinese transitional phrase. The content-quality layer demands rigor and depth, no fabricated data, and — for tutorial content — approachable concept explanations.
-
-Two principles run through every rule: every sentence that survives must give the reader something they did not already have, and a violation is measured by how likely it is that an experienced writer would do the same thing on purpose — deliberate choices are not violations; unconscious templating is.
-
-At execution time the skill first reads the draft and marks every problem, then revises layer by layer, and finally re-reads it as a check. No facts are added, and the intended meaning is never changed.
+Two principles run through every rule: every sentence that survives must tell the reader something new, and a violation is measured by how likely an experienced writer would do the same thing on purpose — deliberate choices are not violations, unconscious templating is. At execution time the skill marks the problems first, revises layer by layer, then re-reads as a check; no facts are added, and the meaning is never changed.
 
 ## License
 
-Released under the MIT License; see the LICENSE file at the repository root. You are free to use, modify, and redistribute it, provided the copyright and permission notices are kept.
+MIT; see [`LICENSE`](LICENSE). Free to use, modify, and redistribute, provided the copyright and permission notices are kept.

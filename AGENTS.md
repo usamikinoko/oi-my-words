@@ -6,7 +6,7 @@ This repository is a collection of Chinese writing-guideline skills. It contains
 
 - `skills/oi-my-words/` — the rewrite skill: strips the AI flavor from an existing draft.
 - `skills/oi-my-words-create/` — the companion skill: writes a new article from a topic or outline.
-- `docs/` — planning documents and case data (maintained by hand).
+- `examples/` — worked input/output examples and their detection numbers (maintained by hand).
 - `README.md` / `README_CN.md` — user-facing docs; the two must stay in sync.
 
 ## Single source of truth
@@ -25,4 +25,4 @@ This repository is a collection of Chinese writing-guideline skills. It contains
 
 ## Verification
 
-- After changing a `SKILL.md`, re-run one comparison case from `docs/` and commit the new result under `docs/cases/`.
+- After changing a `SKILL.md`, re-run one example under `examples/` and update its detection numbers.
